@@ -1,0 +1,21 @@
+<h2>ホームタウン登録</h2>
+
+<%= form_for @hometown do |f| %>
+  <%= render "devise/shared/error_messages", resource: @hometown %>
+
+  <div class="field">
+    <%= f.label :pref_id %><br />
+    <%= f.collection_select(:pref_id, Pref.all, :id, :name, {}, {class:"select-box", id:"user-prefecture"}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
