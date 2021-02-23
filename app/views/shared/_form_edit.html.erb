@@ -1,0 +1,38 @@
+<div class ="posts-new">
+  <div class = new-container>
+    <h2 class ="form-heading">
+      投稿の編集
+    </h2>
+      <div class = "form">
+        <div class = "form-body">
+          <%=form_with model: @post,local: true do |f|%>
+            <div class="weight-bold-text">
+              タイトル
+              </div>
+                <%=f.text_area :title,id:"posts-name",placeholder:"タイトル(必須 40字まで)",maxlength:"40"%>
+                <div class = "img-upload">
+                <div class="weight-bold-text">
+                  画像
+                </div>  
+             </div>
+             <div class = "click-upload">
+              <p>
+                クリックしてファイルをアップロード
+              </p>
+              <%=f.file_field :image, id:"post-image"%>
+              <div id = "image-list"></div>
+             </div>
+             <div class="weight-bold-text">
+              感想
+            </div>
+             <%=f.text_area :content,class: "post-content",id:"content",placeholder:"思い出(必須 1,000字まで)",rows:"7",maxlength:"1000"%>
+            
+              <div class = "post-btn-content">
+                <%=f.submit "投稿する",class:"posts-btn"%>
+                <%=link_to '戻る',post_path(@post.id),class: "back-btn"%>
+              </div>
+          <%end%>
+        </div>
+      </div>
+  </div>
+</div>
