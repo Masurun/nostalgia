@@ -3,12 +3,25 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-
+  
   def new
     @user = User.new
   end
   
   def create
+    if params[:sns_auth] == 'true'
+      pass = Devise.friendly_token
+      params[:user][:password] = pass
+      params[:user][:password_confirmation] = pass
+      @user = User.new(sign_up_params)
+      unless @user.valid?
+        render :new and return
+      end
+      session["devise.regist_data"] = {user: @user.attributes}
+      session["devise.regist_data"][:user]["password"] = params[:user][:password]
+      @hometown = @user.build_hometown
+      render :new_hometown
+  else
     @user = User.new(sign_up_params)
     unless @user.valid?
       render :new and return
@@ -17,6 +30,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session["devise.regist_data"][:user]["password"] = params[:user][:password]
     @hometown = @user.build_hometown
     render :new_hometown
+    end
   end
 
   def create_hometown
@@ -36,6 +50,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def hometown_params
     params.require(:hometown).permit(:pref_id,:city)
   end
+
   # GET /resource/sign_up
   # def new
   #   super
