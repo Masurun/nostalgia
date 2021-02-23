@@ -1,0 +1,27 @@
+<%=render partial: "shared/header"%>
+    <div class= "top-main">
+
+      <div class="post-show">
+  <div class="post-box">
+    <h2 class="content-title">
+      <%= @post.title %>
+    </h2>
+    <div class="post-img-content">
+      <%= image_tag @post.image ,class:"post-box-img" %>
+    </div>
+
+    
+    <div class="post-explain-box">
+    感想
+    </div>
+     <%=@post.content%>
+    
+    <%if user_signed_in?%>
+    <%if current_user.id==@post.user_id%>
+    <%= link_to "投稿の編集",edit_post_path(@post.id) ,class: "post-red-btn" %>
+    <p class="or-text">or</p>
+    <%= link_to "投稿の削除",post_path(@post.id), class:"post-destroy" ,method: :delete%>
+    <%end%>
+    <%end%>
+    
+ 
