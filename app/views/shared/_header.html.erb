@@ -1,0 +1,41 @@
+<header>
+  <div class="header-container">
+    <div class = "header-upper">
+    <div class="header-logo">
+      <%=link_to "Nostalgia", about_path%>
+    </div>
+    <div class = "upper-left">
+    
+
+    
+        <% if user_signed_in? %>
+     <li class = "upper-nickname">
+     <%=link_to "#{current_user.nickname}",root_path%>
+     </li>
+        
+     <li>
+     <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+     </li>
+     <% else %>
+     
+     <li>
+     <%= link_to 'ログイン', new_user_session_path %>
+     </li>
+     <li><%= link_to '新規登録', new_user_registration_path%></li>
+      <% end %>
+      </div>  
+    </div>
+    <ul class="header-menus">
+            <li>
+              <%=link_to("Nostalgiaとは？",about_path )%>
+            </li>
+          <li>
+            <%=link_to("投稿一覧",posts_path)%>
+          </li>
+          <% if user_signed_in? %>
+          <li>
+              <%=link_to("新規投稿",new_post_path)%>
+          </li>
+          <%end%>
+  </div>
+  </header>

@@ -1,3 +1,44 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+html{
+  font:100%/1.5 'Avenir Next', 'Hiragino Sans', sans-serif;
+  line-height:1.7;
+  letter-spacing: 1px;
+}
+ul,li{
+  list-style: none;
+}
+
+.top-main{
+  background-size: cover;
+  background-color:burlywood;
+  // background-image: url("");
+  background-repeat:no-repeat;
+  top: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  padding: 200px 0 100px;
+  text-align: center;
+  background-position: center 50%;
+  position: absolute;
+  color: aliceblue;
+}
+
+.top-title{
+  position: relative;
+ }
+
+.top-main h1 {
+  font-size: 70px;
+  font-weight: 500;
+  line-height: 1.3;
+  -webkit-font-smoothing: absolute;
+  margin-bottom: 50px;
+  
+}
+
+.top-main p{
+  font-size: 30px;
+}

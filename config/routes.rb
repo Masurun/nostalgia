@@ -8,4 +8,6 @@ Rails.application.routes.draw do
     post 'hometowns', to: 'users/registrations#create_hometown'
   end
   root to: "home#index"
+  get "about" => "home#about"
+  resources :posts
 end

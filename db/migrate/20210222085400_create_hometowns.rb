@@ -3,7 +3,7 @@ class CreateHometowns < ActiveRecord::Migration[6.0]
     create_table :hometowns do |t|
       t.integer :pref_id,   null: false
       t.string  :city,      null: false
-      t.references :user
+      t.references :user,   foreign_key: true
       t.timestamps
     end
   end
