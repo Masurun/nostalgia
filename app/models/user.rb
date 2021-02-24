@@ -7,6 +7,9 @@ class User < ApplicationRecord
          has_one :hometown
          has_many :sns_credentials
          has_many :posts
+         has_many :room_users
+         has_many :rooms, through: :room_users
+         has_many :messages
   def self.from_omniauth(auth)
     sns = SnsCredential.where(provider: auth.provider, uid: auth.uid).first_or_create
     user = User.where(email: auth.info.email).first_or_initialize(
