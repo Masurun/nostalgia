@@ -9,14 +9,17 @@ class PostsController < ApplicationController
   end
   def create
     @post=Post.new(post_params)
+
     if @post.save
       redirect_to posts_path
     else
       render :new
     end
   end
+
   def show
   end
+
   def edit
   end
 
@@ -35,7 +38,7 @@ class PostsController < ApplicationController
   end
   private
   def post_params
-    params.require(:post).permit(:content,:title,:image).merge(user_id: current_user.id)
+    params.require(:post).permit(:content,:title,images: []).merge(user_id: current_user.id)
   end
   def set_post
     @post=Post.find(params[:id])
