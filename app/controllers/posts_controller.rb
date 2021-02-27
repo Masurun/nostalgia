@@ -2,16 +2,17 @@ class PostsController < ApplicationController
   before_action :authenticate_user!,except:[:index,:show]
   before_action :set_post,  only:[:show,:edit,:destroy,:update]
   def index
-    @posts=Post.all.includes(:user).order('created_at DESC')
+    @posts = Post.all.includes(:user).order(created_at: :desc)
   end
   def new
-    @post=Post.new
+    @post = Post.new
   end
   def create
-    @post=Post.new(post_params)
-
-    if @post.save
-      redirect_to posts_path
+    @post = PostsTag.new(post_params)
+ 
+    if @post.valid?
+      @post.save
+    return redirect_to posts_path
     else
       render :new
     end
@@ -36,9 +37,10 @@ class PostsController < ApplicationController
         redirect_to posts_path
       end
   end
+
   private
   def post_params
-    params.require(:post).permit(:content,:title,images: []).merge(user_id: current_user.id)
+    params.require(:post).permit(:content,:title,:tag_name,images: []).merge(user_id: current_user.id)
   end
   def set_post
     @post=Post.find(params[:id])

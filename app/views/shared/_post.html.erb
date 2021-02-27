@@ -3,8 +3,13 @@
   <% post.images.each do |image| %>
   <%= image_tag image, class: 'images' %>
 <% end %>
-  <div class="card__body">
     <%= link_to post.title,post_path(post.id), class: :card__title%>
+    <div class="card__body">
+    <li class="tag-list">
+            <%post.tags.each do |tag| %>
+              #<%=tag.tag_name%>
+            <%end%>
+          </li>
     <%= link_to "by #{post.user.nickname}",root_path, class: :card__user %>
   </div>
 </div>

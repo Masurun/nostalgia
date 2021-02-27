@@ -32,16 +32,12 @@
           <li>
             <%=link_to("投稿一覧",posts_path)%>
           </li>
-          <li>
-            <%=link_to("チャットルーム一覧",rooms_path)%>
-          </li>
+          
           <% if user_signed_in? %>
           <li>
               <%=link_to("新規投稿",new_post_path)%>
           </li>
-           <li>
-            <%=link_to("チャットルーム作成",new_room_path)%>
-          </li>
+           
           <%end%>
   </div>
   </header>

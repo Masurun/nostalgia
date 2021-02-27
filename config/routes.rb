@@ -10,8 +10,6 @@ Rails.application.routes.draw do
   root to: "home#index"
   get "about" => "home#about"
   resources :posts
-  resources :rooms,only:[:index,:new,:create,:destroy] do
-    resources :messages,only:[:index,:create]
-  end
+  resources :messages,only:[:index,:create]
   resources :users,only:[:show]
 end

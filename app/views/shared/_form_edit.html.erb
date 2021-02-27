@@ -22,12 +22,19 @@
                <%=f.file_field :images,name: 'post[images][]', id:"post-image"%>
               <div id = "image-list"></div>
              </div>
-             
+             <% @post.images.each do |image| %>
+            <%= image_tag images, class: 'images' %>
+          <% end %>
              <div class="weight-bold-text">
               感想
             </div>
              <%=f.text_area :content,class: "post-content",id:"content",placeholder:"思い出(必須 1,000字まで)",rows:"7",maxlength:"1000"%>
-            
+            <div class="tag-field", id='tag-field'>
+            <div class="weight-bold-text">
+              タグ
+            </div>
+              <%= f.text_field :name, class:"input-tag" %>
+            </div>
               <div class = "post-btn-content">
                 <%=f.submit "投稿する",class:"posts-btn"%>
                 <%=link_to '戻る',post_path(@post.id),class: "back-btn"%>
