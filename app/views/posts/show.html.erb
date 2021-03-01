@@ -3,9 +3,7 @@
 
       <div class="post-show">
   <div class="post-box">
-    <h2 class="content-title">
-      <%= @post.title %>
-    </h2>
+    
     <div class="post-img-content">
       <% @post.images.each do |image| %>
         <%= image_tag image, class: 'images' %>
@@ -13,13 +11,10 @@
     </div>
 
     
-    <div class="post-explain-box">
-    感想
-    </div>
-     <%=@post.content%>
+   
     <li class="tag-list">
             <%@post.tags.each do |tag| %>
-              #<%=tag.name%>
+              #<%=tag.tag_name%>
             <%end%>
     <%if user_signed_in?%>
     <%if current_user.id==@post.user_id%>

@@ -9,7 +9,15 @@ Rails.application.routes.draw do
   end
   root to: "home#index"
   get "about" => "home#about"
-  resources :posts
-  resources :messages,only:[:index,:create]
+  resources :posts do 
+    collection do
+      get 'search'
+    end
+  end
+  resources :records do 
+    collection do
+      get 'search'
+    end
+  end
   resources :users,only:[:show]
 end

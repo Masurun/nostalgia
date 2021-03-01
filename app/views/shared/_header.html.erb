@@ -1,4 +1,7 @@
 <header>
+
+  
+
   <div class="header-container">
     <div class = "header-upper">
     <div class="header-logo">
@@ -26,18 +29,30 @@
       </div>  
     </div>
     <ul class="header-menus">
+    
             <li>
               <%=link_to("Nostalgiaとは？",about_path )%>
             </li>
-          <li>
-            <%=link_to("投稿一覧",posts_path)%>
-          </li>
-          
+
+  <div class="navbar">
+    <ul class="nav-lists">
+          <li class = "background-red" id = "lists">投稿一覧</li>
+          <ul class="show-lists hidden"  id="pull-down">
+              <li><%=link_to("投稿一覧(画像)",posts_path)%></li>
+              <li><%=link_to("投稿一覧(テキスト)",records_path)%></li>
+          </ul>  
+    </ul>
+  </div>    
+          <div class="navbar">
+    <ul class="nav-lists">
           <% if user_signed_in? %>
-          <li>
-              <%=link_to("新規投稿",new_post_path)%>
-          </li>
-           
+          <li class = "background-red" id = "new-lists">新規投稿</li>
+           <ul class="show-lists hidden"  id="new-pull-down">
+              <li><%=link_to("新規投稿(画像)",new_post_path)%></li>
+              <li><%=link_to("新規投稿(テキスト)",new_record_path)%></li>
+           </ul> 
           <%end%>
-  </div>
+      </ul> 
+      </ul>
+  </div> 
   </header>

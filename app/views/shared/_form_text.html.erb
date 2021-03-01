@@ -4,26 +4,13 @@
       新規投稿
     </h2>
         <div class = "form-body">
-          <%=form_with model: @post,url: posts_path,local: true do |f|%>
+          <%=form_with model: @record,url: records_path,local: true do |f|%>
             <div class="weight-bold-text">
               タイトル
               </div>
                 <%=f.text_area :title,id:"posts-name",placeholder:"タイトル(必須 40字まで)",maxlength:"40"%>
                 <div class = "img-upload">
-                <div class="weight-bold-text">
-                  画像
-                </div>  
-             </div>
-             <div class = "click-upload">
-              <p>
-                クリックしてファイルをアップロード
-              </p>
-              <%=f.file_field :images,name: 'post[images][]', id:"post-image",direct_upload: true, multiple: true%>
-              <div id = "image-list"></div>
-             </div>
-            <% @post.images do |image| %>
-            <%= image_tag image, class: 'images' %>
-          <% end %>
+                
              <div class="weight-bold-text">
               感想
             </div>

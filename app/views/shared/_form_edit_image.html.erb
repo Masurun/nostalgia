@@ -1,15 +1,11 @@
 <div class ="posts-new">
   <div class = new-container>
     <h2 class ="form-heading">
-      投稿の編集
+      新規投稿
     </h2>
-      <div class = "form">
         <div class = "form-body">
-          <%=form_with model: @post,local: true do |f|%>
-            <div class="weight-bold-text">
-              タイトル
-              </div>
-                <%=f.text_area :title,id:"posts-name",placeholder:"タイトル(必須 40字まで)",maxlength:"40"%>
+          <%=form_with model: @post,url: posts_path,local: true do |f|%>
+            
                 <div class = "img-upload">
                 <div class="weight-bold-text">
                   画像
@@ -19,28 +15,26 @@
               <p>
                 クリックしてファイルをアップロード
               </p>
-               <%=f.file_field :images,name: 'post[images][]', id:"post-image"%>
+              <%=f.file_field :images,name: 'post[images][]', id:"post-image",direct_upload: true, multiple: true%>
               <div id = "image-list"></div>
              </div>
-             <% @post.images.each do |image| %>
-            <%= image_tag images, class: 'images' %>
+            <% @post.images do |image| %>
+            <%= image_tag image, class: 'images' %>
           <% end %>
-             <div class="weight-bold-text">
-              感想
-            </div>
-             <%=f.text_area :content,class: "post-content",id:"content",placeholder:"思い出(必須 1,000字まで)",rows:"7",maxlength:"1000"%>
+             
             <div class="tag-field", id='tag-field'>
             <div class="weight-bold-text">
               タグ
             </div>
-              <%= f.text_field :name, class:"input-tag" %>
+            
+              <%= f.text_field :tag_name, class:"input-tag" %>
             </div>
+            
               <div class = "post-btn-content">
                 <%=f.submit "投稿する",class:"posts-btn"%>
                 <%=link_to '戻る',post_path(@post.id),class: "back-btn"%>
               </div>
           <%end%>
         </div>
-      </div>
   </div>
 </div>

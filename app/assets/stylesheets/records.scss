@@ -1,0 +1,56 @@
+// Place all the styles related to the records controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.contents{
+  margin: 30px auto 0;
+  background-color: #fff;
+  height: 600px;
+  width: 70%;
+  overflow: scroll;
+  .content{
+    padding: 10px;
+    border-bottom: 1px solid #f6f6f6;
+    display: flex;
+    &__left{
+      padding-right: 20px;
+      &--image{
+        height: 55px;
+        width: 55px;
+        border: solid 1px;
+        display: flex;
+        justify-content: center;
+      }
+    }
+    &__right{
+      width: calc(100%-100px);
+      &__top{
+        font-size: 20px;
+        font-weight: bold;
+        &--title{
+          text-decoration: none;
+          color: #000000;
+        }
+      }
+      &__bottom{
+        font-size: 15px;
+        color: #999;
+        display: flex;
+        &--userName{
+          &--btn{
+            text-decoration: none;
+            color: #999;
+          }
+        }
+        &--date{
+          margin-left: 20px;
+        }
+      }
+    }
+    &__title{
+      font-size: 30px;
+      font-weight: bold;
+      padding-top: 30px;
+      text-align: center;
+    }
+  }
+}

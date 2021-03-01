@@ -1,0 +1,23 @@
+<%=render partial: "shared/header"%>
+    <div class= "top-main">
+      <div class="post-show">
+  <div class="post-box">
+    <h2 class="content-title">
+      <%= @record.title %>
+    </h2>
+    <%if user_signed_in?%>
+    <%if current_user.id==@record.user_id%>
+    <%= link_to "投稿の編集",edit_record_path(@record.id) ,class: "post-red-btn" %>
+    <p class="or-text">or</p>
+    <%= link_to "投稿の削除",record_path(@record.id), class:"post-destroy" ,method: :delete%>
+    <%end%>
+    <%end%>
+    
+ <div class="post-explain-box">
+    感想
+    </div>
+     <%=@record.content%>
+    <li class="tag-list">
+            <%@record.tags.each do |tag| %>
+              #<%=tag.tag_name%>
+            <%end%>
