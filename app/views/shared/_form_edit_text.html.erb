@@ -1,0 +1,34 @@
+<div class ="posts-new">
+  <div class = new-container>
+    <h2 class ="form-heading">
+      新規投稿
+    </h2>
+        <div class = "form-body">
+          <%=form_with model: @record,url: records_path,local: true do |f|%>
+            <div class="weight-bold-text">
+              タイトル
+              </div>
+                <%=f.text_area :title,id:"posts-name",placeholder:"タイトル(必須 40字まで)",maxlength:"40"%>
+                <div class = "img-upload">
+                
+             <div class="weight-bold-text">
+              感想
+            </div>
+             <%=f.text_area :content,class: "post-content",id:"content",placeholder:"思い出(必須 1,000字まで)",rows:"7",maxlength:"1000"%>
+            <div class="tag-field", id='tag-field'>
+            <div class="weight-bold-text">
+              タグ
+            </div>
+            
+              <%= f.text_field :tag_name, class:"input-tag" %>
+            </div>
+            <div id="search-result">
+            </div>
+              <div class = "post-btn-content">
+                <%=f.submit "投稿する",class:"posts-btn"%>
+                <%=link_to '戻る',record_path(@record.id),class: "back-btn"%>
+              </div>
+          <%end%>
+        </div>
+  </div>
+</div>

@@ -1,10 +1,21 @@
 <div class="card">
   <%# <%= link_to image_tag(post.image,size: "400x400"),post_path(post.id)%>  
   <% post.images.each do |image| %>
-  <%= image_tag image, class: 'images' %>
+  <%=image_tag image, class: 'images' %>
+      <li>
+        <%= link_to '編集', edit_post_path(post.id), method: :get %>
+      </li>
+        <li>
+          <%= link_to '削除', post_path(post.id), method: :delete %>
+        </li>
 <% end %>
-  <div class="card__body">
-    <%= link_to post.title,post_path(post.id), class: :card__title%>
+    
+    <div class="card__body">
+    <li class="tag-list">
+            <%post.tags.each do |tag| %>
+              #<%=tag.tag_name%>
+            <%end%>
+          </li>
     <%= link_to "by #{post.user.nickname}",root_path, class: :card__user %>
   </div>
 </div>

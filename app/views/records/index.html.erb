@@ -1,0 +1,9 @@
+<%=render partial: "shared/header"%>
+<div class= "top-main">
+   <h2 class="index-heading">
+   投稿一覧(テキスト)
+    </h2> 
+   <% @records.each do |record| %>
+  <%= render partial: "shared/record", locals: { record: record } %>
+<% end %>   
+   

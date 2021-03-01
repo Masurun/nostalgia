@@ -1,17 +1,27 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!,except:[:index,:show]
   before_action :set_post,  only:[:show,:edit,:destroy,:update]
-  def index
-    @posts=Post.all.includes(:user).order('created_at DESC')
-  end
-  def new
-    @post=Post.new
-  end
-  def create
-    @post=Post.new(post_params)
 
-    if @post.save
-      redirect_to posts_path
+  def index
+    @posts = Post.all.includes(:user).order(created_at: :desc)
+  end
+
+  def new
+    @post = Post.new
+  end
+
+  def search
+    return nil if params[:keyword] == ""
+    tag = Tag.where(['name LIKE(?)', "%#{params[:keyword]}%"] )
+    render json:{ keyword: tag }
+  end
+
+  def create
+    @post = PostsTag.new(post_params)
+  binding.pry
+    if @post.valid?
+      @post.save
+    return redirect_to posts_path
     else
       render :new
     end
@@ -36,11 +46,13 @@ class PostsController < ApplicationController
         redirect_to posts_path
       end
   end
+
   private
   def post_params
-    params.require(:post).permit(:content,:title,images: []).merge(user_id: current_user.id)
+    params.require(:post).permit(:tag_name,images: []).merge(user_id: current_user.id)
   end
   def set_post
-    @post=Post.find(params[:id])
+    @post = Post.find(params[:id])
+   
   end
 end

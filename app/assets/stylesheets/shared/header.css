@@ -52,3 +52,6 @@ header a{
   position: absolute;
   overflow: scroll;
 }
+.hidden{
+  display: none;
+}
