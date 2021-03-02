@@ -18,7 +18,6 @@ class PostsController < ApplicationController
 
   def create
     @post = PostsTag.new(post_params)
-  binding.pry
     if @post.valid?
       @post.save
     return redirect_to posts_path
